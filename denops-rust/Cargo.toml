@@ -3,6 +3,14 @@ name = "denops-rust"
 version = "0.1.0"
 authors = ["kkiyama117 <k.kiyama117@gmail.com>"]
 edition = "2018"
+categories = ["wasm"]
+description = "Denops rust library"
+homepage = "https://github.com/kkiyama117/denops-rust"
+keywords = ["vim", "deno", "denops"]
+license = "MIT/Apache-2.0"
+repository = "https://github.com/kkiyama117/denops-rust"
+readme = "../README.md"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
