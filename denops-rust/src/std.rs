@@ -4,8 +4,6 @@
 
 use wasm_bindgen::prelude::*;
 
-pub mod console;
-
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
 #[cfg(feature = "wee_alloc")]
@@ -13,7 +11,7 @@ pub mod console;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen(module = "https://deno.land/x/denops_std@v0.3/mod.ts")]
-extern "C" {
+extern {
     pub type Vim;
     pub type VariableHelper;
     // static vim: Vim;
@@ -23,10 +21,4 @@ extern "C" {
 
     #[wasm_bindgen(method, getter, catch)]
     pub async fn get(this: &VariableHelper, prop: &str) -> Result<JsValue, JsValue>;
-}
-
-#[wasm_bindgen]
-pub async fn vim_test(test: Vim) -> Vim {
-    // console::log(JsValue::from(&test));
-    test
 }

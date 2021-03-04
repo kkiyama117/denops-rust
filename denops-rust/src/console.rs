@@ -21,7 +21,4 @@ extern "C" {
     pub fn log(s: JsValue);
     #[wasm_bindgen(js_namespace = console, js_name = error)]
     pub fn log_error(s: JsValue);
-    // #[wasm_bindgen(js_namespace = global, js_name = sleep, catch)]
-    // #[wasm_bindgen(js_name = sleep, catch)]
-    // async fn sleep(m_sec: JsValue) -> Result<(), JsValue>;
 }

@@ -27,6 +27,15 @@ See each licence also. ([`LICENSE`](https://github.com/kkiyama117/denops-rust/bl
 - https://github.com/rustwasm/wasm-pack/issues/672
 
 */
+// extern WASM calls are wrapped in unsafe,
+// but they don't technically have to be.
+#![deny(unused_unsafe)]
+
 #[cfg(target_arch = "wasm32")]
 #[macro_use]
-pub mod wasm;
+pub mod console;
+
+#[cfg(target_arch = "wasm32")]
+#[macro_use]
+pub mod std;
+
