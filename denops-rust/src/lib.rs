@@ -32,10 +32,12 @@ See each licence also. ([`LICENSE`](https://github.com/kkiyama117/denops-rust/bl
 #![deny(unused_unsafe)]
 
 #[cfg(target_arch = "wasm32")]
+#[cfg(feature = "console")]
 #[macro_use]
 pub mod console;
 
 #[cfg(target_arch = "wasm32")]
+#[cfg(feature = "std")]
 #[macro_use]
 pub mod std;
 
