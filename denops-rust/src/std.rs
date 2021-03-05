@@ -19,6 +19,6 @@ extern {
     #[wasm_bindgen(method, getter)]
     pub fn g(this: &Vim) -> VariableHelper;
 
-    #[wasm_bindgen(method, getter, catch)]
-    pub async fn get(this: &VariableHelper, prop: &str) -> Result<JsValue, JsValue>;
+    #[wasm_bindgen(method, catch)]
+    pub async fn get(this: &VariableHelper, prop: JsValue) -> Result<JsValue, JsValue>;
 }

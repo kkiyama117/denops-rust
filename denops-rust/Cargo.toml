@@ -14,16 +14,16 @@ readme = "../README.md"
 [features]
 default = ["full"]
 console = []
-full = ["console","std"]
-std=[]
-minimal-wasm= ["wee_alloc"]
+full = ["console", "std"]
+std = []
+minimal-wasm = ["wee_alloc"]
 
 [dependencies]
 anyhow = "1"
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 # wasm-bindgen = { version = "0.2.63", features = ["serde-serialize"] }
-wasm-bindgen = "0.2.63"
+wasm-bindgen = "0.2.71"
 wasm-bindgen-futures = "0.4.21"
 js-sys = "0.3.48"
 wee_alloc = { version = "0.4.5", optional = true }
