@@ -1,6 +1,6 @@
 [package]
 name = "denops-rust"
-version = "0.1.1"
+version = "0.2.1"
 authors = ["kkiyama117 <k.kiyama117@gmail.com>"]
 edition = "2018"
 categories = ["wasm"]
@@ -22,7 +22,6 @@ execute = []
 variable = []
 
 [dependencies]
-anyhow = "1"
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 # wasm-bindgen = { version = "0.2.63", features = ["serde-serialize"] }
