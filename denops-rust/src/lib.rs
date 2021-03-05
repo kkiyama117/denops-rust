@@ -49,6 +49,7 @@ pub mod execute;
 #[cfg(feature = "autocmd")]
 pub mod autocmd;
 
+#[cfg(target_arch = "wasm32")]
 pub(crate) mod denops;
 
 use wasm_bindgen::prelude::*;

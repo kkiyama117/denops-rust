@@ -22,9 +22,6 @@ execute = []
 variable = []
 
 [dependencies]
-
-[target.'cfg(target_arch = "wasm32")'.dependencies]
-# wasm-bindgen = { version = "0.2.63", features = ["serde-serialize"] }
 wasm-bindgen = "0.2.71"
 wasm-bindgen-futures = "0.4.21"
 js-sys = "0.3.48"
