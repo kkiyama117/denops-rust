@@ -30,7 +30,6 @@ See each licence also. ([`LICENSE`](https://github.com/kkiyama117/denops-rust/bl
 // extern WASM calls are wrapped in unsafe,
 // but they don't technically have to be.
 #![deny(unused_unsafe)]
-#![deny(unused_unsafe)]
 
 #[cfg(target_arch = "wasm32")]
 #[cfg(feature = "console")]
@@ -53,9 +52,58 @@ pub mod autocmd;
 pub(crate) mod denops;
 
 use wasm_bindgen::prelude::*;
+use wasm_bindgen::convert::{IntoWasmAbi, WasmAbi};
 
 #[wasm_bindgen(module = "https://deno.land/x/denops_std/mod.ts")]
 extern {
     // https://deno.land/x/denops_std/vim/vim.ts
     pub type Vim;
+
+    // https://deno.land/x/denops_std/vim/autocmd.ts
+    pub type AutocmdHelper;
+
+    #[wasm_bindgen(method, getter)]
+    pub fn name(this: &Vim) -> String;
+
+    #[wasm_bindgen(static_method_of = Vim)]
+    pub fn get() -> Vim;
+
+    #[wasm_bindgen(method, catch)]
+    pub async fn call(this: &Vim, func: &str, args: Box<[JsValue]>) -> Result<JsValue, JsValue>;
+
+    #[wasm_bindgen(method, catch)]
+    pub async fn cmd(this: &Vim, context: Context) -> Result<(), JsValue>;
+
+    #[wasm_bindgen(method, catch)]
+    pub async fn eval(this: &Vim, context: Context) -> Result<JsValue, JsValue>;
+
+    #[wasm_bindgen(method, catch)]
+    pub async fn execute(this: &Vim, command: StrOrStrArray, context: Context) -> Result<(), JsValue>;
+
+    #[wasm_bindgen(method, catch)]
+    pub async fn autocmd(this: &Vim, group: &str, main: fn(AutocmdHelper)) -> Result<(), JsValue>;
+
+    // #[wasm_bindgen(method, catch)]
+    // pub fn register(this: &Vim, dispatcher: fn());
 }
+
+// can't use `Box<[str]>`, so need to use JsValue
+pub type StrArray = Box<[JsValue]>;
+
+pub enum StrOrStrArray {
+    StrArray,
+    JsValue,
+}
+
+impl IntoWasmAbi for StrOrStrArray, WasmDescribe {
+    type Abi = u32;
+
+    #[inline]
+    fn into_abi(self) -> u32 {
+        let ret = self.idx;
+        std::mem::forget(self);
+        ret
+    }
+}
+
+pub type Context = JsValue;
