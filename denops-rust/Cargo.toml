@@ -1,6 +1,6 @@
 [package]
 name = "denops-rust"
-version = "0.1.1"
+version = "0.2.1"
 authors = ["kkiyama117 <k.kiyama117@gmail.com>"]
 edition = "2018"
 categories = ["wasm"]
@@ -12,21 +12,19 @@ repository = "https://github.com/kkiyama117/denops-rust"
 readme = "../README.md"
 
 [features]
-default = ["full"]
+default = ["prelude"]
+prelude = ["console", "variable"]
+full = ["autocmd", "execute", "prelude"]
+
+autocmd = []
 console = []
-full = ["console","std"]
-std=[]
-minimal-wasm= ["wee_alloc"]
+execute = []
+variable = []
 
 [dependencies]
-anyhow = "1"
-
-[target.'cfg(target_arch = "wasm32")'.dependencies]
-# wasm-bindgen = { version = "0.2.63", features = ["serde-serialize"] }
-wasm-bindgen = "0.2.63"
+wasm-bindgen = "0.2.71"
 wasm-bindgen-futures = "0.4.21"
 js-sys = "0.3.48"
-wee_alloc = { version = "0.4.5", optional = true }
 
 [dev-dependencies]
 pretty_assertions = "0.6"
