@@ -1,0 +1,13 @@
+[workspace]
+exclude = ["examples"]
+members = ["denops-rust", "denops-builder"]
+
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+
+[profile.bench]
+lto = true
+opt-level = 3

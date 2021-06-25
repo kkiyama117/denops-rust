@@ -1,5 +1,9 @@
-use std::ffi::OsStr;
-use std::{env, path::PathBuf, process::Command};
+use std::{
+    env,
+    path::PathBuf,
+    process::Command,
+    fs::canonicalize,
+};
 use structopt::StructOpt;
 
 #[derive(StructOpt)]
@@ -7,9 +11,9 @@ use structopt::StructOpt;
 struct Opt {
     #[structopt(short, long, parse(from_os_str))]
     base_dir: Option<PathBuf>,
-    /// Path to the config
-    #[structopt(short, long, parse(from_os_str))]
-    output: Option<PathBuf>,
+    /// File name of output
+    #[structopt(short, long, default_value = "index.js")]
+    output: String,
 }
 
 fn main() {
@@ -17,25 +21,28 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     let Opt { base_dir, output } = Opt::from_iter_safe(args).unwrap();
     let path = match base_dir {
-        Some(b) => b,
+        Some(b) => {
+            if b.is_absolute(){
+                b
+            }else{
+                canonicalize(&b).unwrap()
+            }
+        },
         None => env::current_dir().unwrap(),
     };
-    let output = match output {
-        Some(o) => o,
-        None => env::current_dir().unwrap().join("index.js"),
-    };
-    println!("{:?},{:?}", path, output);
-    // denops_build(&path, &output);
+    println!("base_dir: {:?}, output: {:?}", &path, &output);
+    denops_build(&path, &output.as_str());
 }
 
-fn denops_build(base_dir: &PathBuf, out_file: &PathBuf) {
+fn denops_build(base_dir: &PathBuf, out_file: &str) {
     let result = Command::new("wasm-pack")
         .args(&[
             "build",
+            base_dir.to_str().unwrap(),
             "--target",
             "web",
             "--out-name",
-            out_file.to_str().unwrap(),
+            out_file,
         ])
         .output()
         .expect("failed to build by wasm-pack");
