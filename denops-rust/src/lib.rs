@@ -54,7 +54,7 @@ pub(crate) mod denops;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(module = "https://deno.land/x/denops_std/mod.ts")]
-extern {
+extern "C" {
     // https://deno.land/x/denops_std/vim/vim.ts
     pub type Vim;
 }

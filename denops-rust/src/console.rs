@@ -26,17 +26,17 @@ pub fn log_error(s: impl ToString) {
     _log_error(to_js_value(s))
 }
 
-pub fn log_raw(s:JsValue){
+pub fn log_raw(s: JsValue) {
     _log(s)
 }
 
-pub fn log_error_raw(s:JsValue){
+pub fn log_error_raw(s: JsValue) {
     _log_error(s)
 }
 
 #[wasm_bindgen]
 #[no_mangle]
-extern {
+extern "C" {
     #[wasm_bindgen(js_namespace = console, js_name = log)]
     fn _log(s: JsValue);
     #[wasm_bindgen(js_namespace = console, js_name = error)]

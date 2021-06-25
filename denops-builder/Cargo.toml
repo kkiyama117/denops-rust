@@ -8,4 +8,5 @@ version = "0.1.0"
 
 [dependencies]
 # cargo      = "0.45.0"
+structopt = "0.3"
 getopts = "0.2"

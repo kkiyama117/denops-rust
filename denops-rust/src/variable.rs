@@ -1,10 +1,10 @@
 #![deny(unused_unsafe)]
 
-use wasm_bindgen::prelude::*;
 use crate::Vim;
+use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(module = "https://deno.land/x/denops_std/mod.ts")]
-extern {
+extern "C" {
     #[wasm_bindgen(method, getter)]
     pub fn g(this: &Vim) -> VariableHelper;
     #[wasm_bindgen(method, getter)]
@@ -23,7 +23,7 @@ extern {
     #[wasm_bindgen(method, catch)]
     pub async fn get(this: &VariableHelper, prop: &str) -> Result<JsValue, JsValue>;
     #[wasm_bindgen(method, catch)]
-    pub async fn set(this: &VariableHelper, prop: &str,value:JsValue) -> Result<(), JsValue>;
+    pub async fn set(this: &VariableHelper, prop: &str, value: JsValue) -> Result<(), JsValue>;
     #[wasm_bindgen(method, catch)]
     pub async fn remove(this: &VariableHelper, prop: &str) -> Result<(), JsValue>;
 }
