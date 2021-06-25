@@ -1,4 +1,6 @@
 # Denops Rust library
+Now not working well!:
+Now it's under developing to be compatible with denops 0.16, so please wait a little!
 
 ## About
 
