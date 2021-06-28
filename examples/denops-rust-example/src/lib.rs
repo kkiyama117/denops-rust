@@ -41,11 +41,11 @@ See each licence also. ([`LICENSE_MIT`](https://github.com/kkiyama117/denops-rus
 
 - https://github.com/rustwasm/wasm-pack/issues/672
 
-*/
+ */
 use wasm_bindgen::prelude::*;
 use wasm_bindgen_futures::{JsFuture, future_to_promise};
 use web_sys::{Response};
-use denops_rust::{console_log, Vim};
+use denops_rust::{console_log, Denops};
 use js_sys::Promise;
 
 #[wasm_bindgen(start)]
@@ -62,31 +62,32 @@ pub fn initialize() -> Result<(), JsValue> {
 }
 
 #[wasm_bindgen]
-pub async fn vim_test(vim: Vim) -> JsValue {
+pub async fn vim_test(_denops: Denops) -> JsValue {
     // Use `console::log` (defined at denops_rust) to call `echo` in code written by rust!
     console_log!("You can get variables and return it!");
     // You can use (return) JsValue from function!
-    vim.g().get("denops_helloworld").await.unwrap()
+    // vars.g().get("denops_helloworld").await.unwrap()
+    JsValue::from("todo")
 }
 
 #[wasm_bindgen]
-pub async fn vim_test2(_vim: Vim) {
+pub async fn vim_test2(_denops: Denops) {
     // Can call and wait deno's asynchronous function here!
-    let data = call_js_fetch("https://api.github.com/repos/kkiyama117/denops-rust-examples").await.unwrap();
+    let data = call_js_fetch("https://api.github.com/repos/vim-denops/denops-helloworld.vim").await.unwrap();
     console_log!("{:?}",data);
     console_log!("Call asynchronous function finished!");
 }
 
-pub async fn _vim_test3(_vim: Vim) -> Result<JsValue,JsValue> {
+pub async fn _vim_test3(_denops: Denops) -> Result<JsValue, JsValue> {
     // Can call and wait deno's asynchronous function here!
-    let data = call_js_fetch("https://api.github.com/repos/kkiyama117/denops-rust-examples").await?;
+    let data = call_js_fetch("https://api.github.com/repos/vim-denops/denops-helloworld.vim").await?;
     console_log!("{:?}",data);
     Ok(JsValue::from_str("fetch finished"))
 }
 
 #[wasm_bindgen]
-pub async fn vim_test3(_vim: Vim) -> Promise {
-    future_to_promise(_vim_test3(_vim))
+pub async fn vim_test3(_denops: Denops) -> Promise {
+    future_to_promise(_vim_test3(_denops))
 }
 
 #[wasm_bindgen]

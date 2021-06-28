@@ -1,6 +1,4 @@
 # Denops Rust library
-Now not working well!:
-Now it's under developing to be compatible with denops 0.16, so please wait a little!
 
 ## About
 
@@ -8,6 +6,10 @@ Usually, We can use typescript to create vim plugin with typescript and any wasm
 some API from rust, and then this is useful!
 
 Read this [article](https://zenn.dev/kkiyama117/articles/2021-03-01-denops-rust) also.
+
+## Supports
+
+Denops: v1.0.0-alpha0 or later
 
 ## Todo
 
@@ -23,4 +25,3 @@ and [`LICENSE_APACHE`](https://github.com/kkiyama117/denops-rust/blob/main/LICEN
 
 - https://github.com/vim-denops/denops-deno
 - https://github.com/vim-denops/denops-std-deno
-- https://github.com/kkiyama117/denops-rust-example

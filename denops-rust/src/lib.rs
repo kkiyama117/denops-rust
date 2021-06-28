@@ -35,26 +35,23 @@ See each licence also. ([`LICENSE`](https://github.com/kkiyama117/denops-rust/bl
 #[cfg(feature = "console")]
 #[macro_use]
 pub mod console;
-
-#[cfg(target_arch = "wasm32")]
-#[cfg(feature = "variable")]
-pub mod variable;
-
-#[cfg(target_arch = "wasm32")]
-#[cfg(feature = "execute")]
-pub mod execute;
-
-#[cfg(target_arch = "wasm32")]
-#[cfg(feature = "autocmd")]
-pub mod autocmd;
-
-#[cfg(target_arch = "wasm32")]
-pub(crate) mod denops;
+//
+// #[cfg(target_arch = "wasm32")]
+// #[cfg(feature = "variable")]
+// pub mod variable;
+//
+// #[cfg(target_arch = "wasm32")]
+// #[cfg(feature = "execute")]
+// pub mod execute;
+//
+// #[cfg(target_arch = "wasm32")]
+// #[cfg(feature = "autocmd")]
+// pub mod autocmd;
 
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(module = "https://deno.land/x/denops_std/mod.ts")]
 extern "C" {
     // https://deno.land/x/denops_std/vim/vim.ts
-    pub type Vim;
+    pub type Denops;
 }

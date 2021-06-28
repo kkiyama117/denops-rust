@@ -12,7 +12,7 @@ struct Opt {
     #[structopt(short, long, parse(from_os_str))]
     base_dir: Option<PathBuf>,
     /// File name of output
-    #[structopt(short, long, default_value = "index.js")]
+    #[structopt(short, long, default_value = "index")]
     output: String,
 }
 
@@ -51,7 +51,7 @@ fn denops_build(base_dir: &PathBuf, out_file: &str) {
     let result2 =
     Command::new("sed")
         .args(&["-i", "-e", "s#input = fetch(input);#if (typeof Deno !== 'undefined') input = new WebAssembly.Module(await Deno.readFile(new URL(input).pathname));#", ])
-        .arg(&base_dir.join("pkg").join(out_file.to_owned()))
+        .arg(canonicalize(&base_dir.join("pkg").join(out_file.to_owned()+".js")).unwrap())
         .output()
         .expect("failed to run sed");
     let result2 = String::from_utf8(result2.stderr).unwrap();
