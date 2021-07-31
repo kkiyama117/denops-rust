@@ -1,6 +1,6 @@
 // Import 'start' function from denops_std
-import { Denops } from "https://deno.land/x/denops_std/mod.ts";
-import { execute } from "https://deno.land/x/denops_std/helper/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v1.0.0-alpha.0/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v1.0.0-alpha.0/helper/mod.ts";
 import * as pkg from "../../pkg/index.js";
 
 // Call 'start' with async callback. The callback get 'vim' instance.
