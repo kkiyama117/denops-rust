@@ -1,5 +1,5 @@
 [workspace]
-exclude = []
+exclude = ["examples"]
 members = ["denops-rust", "denops-builder"]
 
 [profile.release]

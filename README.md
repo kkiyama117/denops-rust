@@ -7,6 +7,10 @@ some API from rust, and then this is useful!
 
 Read this [article](https://zenn.dev/kkiyama117/articles/2021-03-01-denops-rust) also.
 
+## Supports
+
+Denops: v1.0.0-alpha0 or later
+
 ## Todo
 
 - [ ] Add type and trait wrapping `denops-deno` and `denops-deno-std`
@@ -21,4 +25,3 @@ and [`LICENSE_APACHE`](https://github.com/kkiyama117/denops-rust/blob/main/LICEN
 
 - https://github.com/vim-denops/denops-deno
 - https://github.com/vim-denops/denops-std-deno
-- https://github.com/kkiyama117/denops-rust-example

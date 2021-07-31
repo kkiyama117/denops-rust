@@ -1,14 +1,19 @@
 #![deny(unused_unsafe)]
 
-use wasm_bindgen::prelude::*;
 use crate::denops::Denops;
-use crate::Vim;
+use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(module = "https://deno.land/x/denops_std/mod.ts")]
-extern {
+extern "C" {
     #[wasm_bindgen(catch)]
-    pub async fn autocmd(denops: &Denops, group: &str, main: fn(AutocmdHelper)) -> Result<(), JsValue>;
+    pub async fn autocmd(
+        denops: &Denops,
+        group: &str,
+        main: fn(AutocmdHelper),
+    ) -> Result<(), JsValue>;
 
+    // https://deno.land/x/denops_std/vim/autocmd.ts
+    pub type AutocmdHelper;
     #[wasm_bindgen(method)]
     pub fn define(this: &AutocmdHelper, event: JsValue, pat: JsValue, cmd: &str, options: JsValue);
 
